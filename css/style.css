@@ -1,0 +1,1787 @@
+/* --- Base Styles & Variables --- */
+:root {
+    --primary-bg: #ffffff;
+    --secondary-bg: #f4f4f9; /* Very light lavender */
+    --accent-color: #ab47bc; /* Subdued Neon Purple */
+    --accent-glow: rgba(171, 71, 188, 0.3);
+    --chrome-color: #b0bec5; /* Sleek Chrome/Silver */
+    --text-color: #444;
+    --heading-color: #212121;
+    --link-color: var(--accent-color);
+    --white: #fff;
+    --border-color: #e0e0e0;
+
+    --font-family: 'Exo 2', 'Helvetica Neue', Arial, sans-serif; /* Futuristic Font - Requires Google Fonts or local import */
+    --header-height: 70px;
+}
+
+/* Import Google Font (Optional but recommended for theme) */
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700&display=swap');
+
+/* Basic Reset */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px; /* Base font size */
+}
+
+body {
+    font-family: var(--font-family);
+    color: var(--text-color);
+    background-color: var(--primary-bg);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex-grow: 1; /* Ensures footer stays at the bottom */
+    padding-top: var(--header-height); /* Prevent content overlap */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%;
+}
+
+h1, h2, h3 {
+    color: var(--heading-color);
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+h1 { font-size: 2.8rem; line-height: 1.2; }
+h2 { font-size: 2.2rem; }
+h3 { font-size: 1.6rem; }
+
+p {
+    margin-bottom: 1rem;
+}
+
+a {
+    color: var(--link-color);
+    text-decoration: none;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+a:hover {
+    color: var(--accent-color);
+    text-shadow: 0 0 8px var(--accent-glow);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* --- Header --- */
+header {
+    background-color: var(--primary-bg);
+    position: fixed; /* Fixed header */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--header-height);
+    z-index: 1000;
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+header .logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--heading-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex; /* Align text and small text */
+    align-items: baseline;
+}
+header .logo:hover {
+    text-shadow: none; /* Don't glow the logo text */
+}
+
+header .logo span {
+    color: var(--accent-color); /* Purple TACO BELL */
+}
+
+header .logo small {
+    font-size: 0.7rem;
+    color: var(--text-color);
+    margin-left: 8px;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+}
+
+header nav li {
+    margin-left: 25px;
+}
+
+header nav a {
+    color: var(--text-color);
+    font-weight: 400;
+    font-size: 1rem;
+    padding: 5px 0;
+    position: relative;
+}
+
+header nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent-color);
+    transition: width 0.3s ease;
+}
+
+header nav a:hover::after,
+header nav a.active::after {
+    width: 100%;
+}
+
+header nav a.active {
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+/* --- Footer --- */
+footer {
+    background-color: var(--secondary-bg); /* Light lavender background */
+    color: var(--text-color);
+    padding: 3rem 0 1.5rem 0; /* More top padding, less bottom */
+    font-size: 0.95rem;
+    margin-top: 4rem; /* Space above footer */
+    border-top: 2px solid var(--accent-color); /* Stronger accent border top */
+}
+
+.footer-grid {
+    display: flex;
+    flex-wrap: wrap; /* Allow columns to wrap on smaller screens */
+    justify-content: space-between; /* Distribute space between columns */
+    gap: 2rem; /* Space between columns */
+    padding-bottom: 2rem; /* Space before the bottom line */
+    margin-bottom: 1.5rem; /* Space after the border */
+    border-bottom: 1px solid var(--border-color); /* Separator line */
+}
+
+.footer-column {
+    flex: 1; /* Allow columns to share space */
+    min-width: 200px; /* Minimum width before wrapping */
+    padding: 0 10px; /* Add slight horizontal padding to prevent text touching edges on wrap */
+}
+
+.footer-column h5 {
+    color: var(--heading-color);
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+/* Underline for footer column titles */
+.footer-column h5::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background-color: var(--accent-color);
+}
+
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 0.6rem;
+}
+
+.footer-column ul li a {
+    color: var(--text-color);
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.footer-column ul li a:hover {
+    color: var(--accent-color);
+    text-shadow: 0 0 5px var(--accent-glow);
+}
+
+/* Column 1 Specific Styles */
+.footer-brand .footer-logo {
+    display: block; /* Make it block */
+    font-size: 1.4rem; /* Slightly smaller than header */
+    font-weight: 700;
+    color: var(--heading-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    line-height: 1; /* Adjust line height */
+}
+.footer-brand .footer-logo:hover {
+    text-shadow: none;
+}
+.footer-brand .footer-logo span {
+    color: var(--accent-color);
+}
+.footer-brand .footer-logo small {
+    font-size: 0.65rem;
+    color: var(--text-color);
+    margin-left: 5px;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: normal;
+    display: block; /* Put small text on new line */
+    margin-top: 4px;
+}
+.footer-brand p { /* Tagline under logo */
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.footer-social a {
+    display: inline-block; /* Or flex if using icons */
+    margin-right: 15px;
+    color: var(--text-color);
+    font-weight: 600; /* Make social links bold */
+    transition: color 0.3s ease;
+}
+.footer-social a:last-child {
+    margin-right: 0;
+}
+.footer-social a:hover {
+    color: var(--accent-color);
+    text-shadow: none; /* No glow for these */
+}
+
+/* Footer Bottom Styles */
+.footer-bottom {
+    text-align: center;
+    padding-top: 1.5rem; /* Consistent with grid margin-bottom */
+    font-size: 0.85rem;
+    color: #666; /* Slightly muted color */
+}
+
+.footer-bottom p {
+    margin: 0;
+}
+
+/* --- Responsive Adjustments for Footer --- */
+@media (max-width: 992px) {
+    .footer-column {
+        min-width: calc(50% - 2rem); /* Aim for 2 columns on medium screens */
+    }
+}
+
+@media (max-width: 576px) {
+    .footer-grid {
+        flex-direction: column; /* Stack all columns */
+        gap: 1.5rem; /* Reduce gap when stacked */
+        border-bottom: none; /* Remove border when stacked */
+        padding-bottom: 0;
+        margin-bottom: 2rem;
+    }
+    .footer-column {
+        min-width: 100%; /* Full width when stacked */
+        text-align: center; /* Center text in columns on mobile */
+        padding: 0; /* Remove padding */
+    }
+    .footer-column h5::after { /* Center the underline */
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .footer-brand .footer-logo small {
+        display: inline-block; /* Put small text back inline */
+        margin-top: 0;
+    }
+     .footer-bottom {
+        padding-top: 0; /* Reduce top padding */
+        border-top: 1px solid var(--border-color); /* Add border top instead */
+        padding-top: 1.5rem; /* Add space back */
+    }
+}
+
+/* --- Hero Section (Homepage) --- */
+.hero {
+    /* Remove old background properties or comment them out */
+    /* background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.8)), url('data:image/svg+xml;...'), var(--secondary-bg); */
+    /* background-size: auto, 100px 100px, auto; */
+
+    /* Add new background properties */
+    background-image: linear-gradient(rgba(20, 20, 30, 0.5), rgba(20, 20, 30, 0.5)), url('/assets/images/taco_hero.webp'); /* Darker overlay for better contrast */
+    background-size: cover; /* Cover the entire section */
+    background-position: center center; /* Center the image */
+    background-repeat: no-repeat;
+    background-color: var(--secondary-bg); /* Fallback color */
+
+    padding: 6rem 0; /* Keep padding for spacing */
+    /* text-align: center; Remove this - alignment handled by box */
+    display: flex; /* Keep flex for vertical centering */
+    align-items: center;
+    justify-content: center;
+    min-height: 70vh; /* Adjust height as needed */
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    color: var(--heading-color);
+    margin-bottom: 1rem;
+    font-weight: 700;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+}
+.hero h1 span {
+    color: var(--accent-color);
+}
+
+.hero p {
+    font-size: 1.3rem;
+    color: var(--text-color);
+    max-width: 700px;
+    margin: 0 auto 2rem auto;
+    font-weight: 300;
+}
+
+.hero-text-box {
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+    padding: 2.5rem 3rem;
+    border-radius: 15px; /* Slightly larger radius */
+    border: 3px solid var(--chrome-color); /* Chrome border */
+    box-shadow: 0 0 15px var(--accent-glow), 0 5px 25px rgba(0, 0, 0, 0.2); /* Purple glow + standard shadow */
+    max-width: 750px; /* Limit width */
+    margin: 0 auto; /* Center the box horizontally */
+    text-align: center; /* Center text inside the box */
+    backdrop-filter: blur(3px); /* Optional: Add a subtle blur effect behind the box (check browser support) */
+    -webkit-backdrop-filter: blur(3px); /* Safari support */
+}
+
+/* Adjust original hero h1/p styles slightly if needed */
+.hero h1 {
+    font-size: 3.5rem;
+    color: var(--heading-color); /* Keep color defined */
+    margin-bottom: 1rem;
+    font-weight: 700;
+    text-shadow: none; /* Remove previous text shadow if any */
+}
+.hero h1 span {
+    color: var(--accent-color); /* Keep accent color */
+}
+
+.hero p {
+    font-size: 1.3rem;
+    color: var(--text-color); /* Keep color defined */
+    max-width: 100%; /* Paragraph takes width of box */
+    margin: 0 auto 2rem auto; /* Keep bottom margin */
+    font-weight: 300;
+}
+
+/* No changes needed for .cta-button unless desired */
+
+.cta-button {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: var(--white);
+    padding: 12px 30px;
+    border-radius: 50px; /* Sleek rounded */
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 15px var(--accent-glow);
+    border: none; /* Remove default border */
+    cursor: pointer;
+}
+
+.cta-button:hover {
+    background-color: #8e24aa; /* Slightly darker purple */
+    box-shadow: 0 6px 20px var(--accent-glow);
+    transform: translateY(-2px);
+}
+
+/* --- General Content Sections --- */
+.content-section {
+    padding: 4rem 0;
+}
+
+.content-section h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+    display: inline-block; /* Center the pseudo-element */
+    left: 50%;
+    transform: translateX(-50%);
+}
+/* Add a subtle underline to section titles */
+.content-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: var(--accent-color);
+    border-radius: 2px;
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.grid-item {
+    background-color: var(--primary-bg);
+    padding: 2rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.grid-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+.grid-item h3 {
+    color: var(--accent-color);
+    margin-bottom: 0.8rem;
+}
+
+/* --- Menu Page Specific --- */
+.menu-category {
+    margin-bottom: 3rem;
+}
+.menu-category h3 {
+    color: var(--heading-color);
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+}
+.menu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0.8rem 0;
+    border-bottom: 1px dashed var(--border-color);
+}
+.menu-item:last-child {
+    border-bottom: none;
+}
+.menu-item-name {
+    font-weight: 600;
+    color: var(--heading-color);
+    flex-basis: 70%;
+}
+.menu-item-description {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    font-style: italic;
+    display: block; /* Ensure description is below name */
+    margin-top: 0.3rem;
+}
+.menu-item-price {
+    font-weight: 600;
+    color: var(--accent-color);
+    flex-shrink: 0; /* Prevent price from wrapping too early */
+    margin-left: 1rem;
+}
+
+/* --- Franchise Wars / History / Locations --- */
+.text-content {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: justify; /* Justified text for a formal feel */
+}
+
+.text-content h2 {
+    text-align: left; /* Override centered title */
+    left: 0;
+    transform: none;
+    margin-bottom: 1.5rem;
+}
+.text-content h2::after {
+    left: 0; /* Align underline left */
+    transform: none;
+}
+
+.text-content p {
+    margin-bottom: 1.5rem;
+}
+.text-content ul {
+    list-style: disc;
+    margin-left: 25px;
+    margin-bottom: 1.5rem;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 992px) {
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 2rem; }
+    .hero h1 { font-size: 3rem; }
+    .hero p { font-size: 1.1rem; }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --header-height: 60px;
+    }
+    body {
+        /* Consider adding a simple mobile nav toggle here if needed */
+    }
+    header .container {
+        /* Simple stack or adjust spacing if needed */
+        flex-direction: column;
+        height: auto;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    header {
+        position: static; /* Static header on mobile for simplicity */
+        height: auto;
+    }
+    main {
+        padding-top: 0; /* No offset needed for static header */
+    }
+    header .logo {
+        margin-bottom: 10px;
+    }
+    header nav ul {
+        justify-content: center;
+        flex-wrap: wrap; /* Wrap nav items */
+        padding: 0;
+    }
+    header nav li {
+        margin: 5px 10px;
+    }
+
+    .hero {
+        padding: 4rem 0;
+        min-height: 40vh;
+    }
+    .hero h1 { font-size: 2.5rem; }
+    .hero p { font-size: 1rem; }
+
+    .content-section { padding: 3rem 0; }
+    .content-grid { grid-template-columns: 1fr; } /* Stack grid items */
+    .menu-item { flex-direction: column; align-items: flex-start; }
+    .menu-item-price { margin-left: 0; margin-top: 0.5rem; }
+}
+
+@media (max-width: 480px) {
+    html { font-size: 15px; }
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.6rem; }
+    .hero h1 { font-size: 2.2rem; }
+    .cta-button { padding: 10px 25px; font-size: 1rem; }
+}
+
+/* --- Franchise Wars Page Specific --- */
+
+/* Style the hero section for this page differently */
+.franchise-hero {
+    background: linear-gradient(rgba(30, 30, 40, 0.7), rgba(30, 30, 40, 0.8)), var(--secondary-bg); /* Darker, subtle gradient */
+    min-height: 40vh; /* Less height than homepage hero */
+    text-align: center;
+    padding: 4rem 0; /* Adjust padding */
+}
+
+.franchise-hero h1 {
+    color: var(--white);
+    font-size: 3rem; /* Slightly smaller */
+    text-shadow: 0 0 10px var(--accent-glow); /* Neon effect on title */
+}
+
+.franchise-hero p {
+    color: var(--chrome-color); /* Use chrome/silver for subtitle */
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 1rem auto 0 auto;
+    font-weight: 300;
+}
+
+/* --- Floating Card Effect --- */
+.floating-card {
+    background-color: var(--primary-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px; /* Slightly more rounded */
+    padding: 2rem;
+    /* NEON PURPLE SHADOW: Combine subtle depth shadow with a purple glow */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07), /* Base shadow for depth */
+                0 0 12px 2px var(--accent-glow); /* Neon purple glow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden; /* Ensure glow doesn't bleed weirdly */
+}
+
+.floating-card:hover {
+    transform: translateY(-6px); /* Lift effect */
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1), /* Enhanced depth shadow */
+                0 0 20px 4px var(--accent-glow); /* Brighter neon purple glow */
+}
+
+/* --- Timeline Section --- */
+.timeline-section {
+    background-color: var(--secondary-bg); /* Give this section a slightly different background */
+    padding: 4rem 0;
+}
+
+.timeline-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr; /* Give text card slightly more space */
+    gap: 2.5rem;
+    align-items: center; /* Vertically align items */
+}
+
+.timeline-image img {
+    width: 100%; /* Make image fill its container */
+    height: auto;
+    max-width: 450px; /* Max width for the image */
+    display: block;
+    margin: 0 auto; /* Center image if container is wider */
+    border-radius: 8px; /* Optional rounded corners */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* Subtle shadow on image */
+}
+
+.timeline-card {
+    /* Inherits .floating-card styles */
+}
+
+.timeline-card h4 { /* Style for "HISTORICAL ARCHIVE" */
+    font-size: 0.9rem;
+    color: var(--accent-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.timeline-card h3 {
+    color: var(--heading-color); /* Ensure heading color */
+    margin-bottom: 1.5rem; /* Space below title */
+}
+
+.timeline-list {
+    list-style: none; /* Remove default bullets */
+    padding-left: 0;
+}
+
+.timeline-list li {
+    padding: 0.5rem 0;
+    border-bottom: 1px dashed var(--border-color); /* Separator lines */
+    font-size: 0.95rem;
+    color: var(--text-color);
+}
+.timeline-list li:last-child {
+    border-bottom: none; /* No line on the last item */
+}
+.timeline-list li strong {
+    color: var(--accent-color); /* Highlight the year/date */
+    margin-right: 0.5em;
+    display: inline-block;
+    min-width: 50px; /* Align text slightly */
+}
+
+
+/* --- Cultural Legacy Section --- */
+.cultural-legacy {
+    /* Uses standard .content-section padding */
+}
+
+.cultural-legacy h2 {
+    text-align: center; /* Center the main title */
+}
+.cultural-legacy > .container > p { /* Target the intro paragraph */
+    text-align: center;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 3rem; /* Space before cards */
+}
+
+.legacy-grid {
+    /* Uses .content-grid styles */
+    /* We might want slightly larger gaps here */
+    gap: 2.5rem;
+}
+
+.legacy-card {
+    /* Inherits .floating-card and .grid-item styles */
+    text-align: center; /* Center text within these cards */
+}
+
+.legacy-card h3 {
+    color: var(--accent-color); /* Use accent for these titles */
+    margin-bottom: 1rem;
+}
+
+/* --- Responsive Adjustments for Timeline --- */
+@media (max-width: 992px) {
+    .timeline-grid {
+        grid-template-columns: 1fr; /* Stack image and card */
+        gap: 2rem; /* Adjust gap for stacked layout */
+    }
+    .timeline-image img {
+        max-width: 100%; /* Allow image to be wider when stacked */
+        margin-bottom: 1.5rem; /* Add space below image when stacked */
+    }
+    .franchise-hero h1 { font-size: 2.5rem; }
+}
+
+@media (max-width: 768px) {
+    .floating-card { padding: 1.5rem; }
+    .franchise-hero { min-height: 30vh; padding: 3rem 0;}
+    .franchise-hero h1 { font-size: 2.2rem; }
+    .franchise-hero p { font-size: 1rem; }
+}
+
+/* --- Cultural Legacy Section Container Style --- */
+.cultural-legacy {
+    background-color: var(--secondary-bg); /* Use the light lavender background */
+    padding: 3rem 2rem; /* Add padding around the content *within* this section */
+    margin-top: 4rem; /* Ensure space above this section */
+    margin-bottom: 4rem; /* Ensure space below this section */
+    border-radius: 15px; /* Rounded corners for the container card effect */
+    border: 1px solid var(--border-color); /* Subtle border */
+    box-shadow: 0 6px 20px rgba(171, 71, 188, 0.1); /* Subtle purple-tinted shadow, less intense than floating cards */
+
+    /* Override default content-section top/bottom padding if needed, */
+    /* but the padding above should handle it. */
+    /* padding-top: 3rem; */
+    /* padding-bottom: 3rem; */
+}
+
+/* Adjust the H2 within this specific section if needed */
+.cultural-legacy h2 {
+     /* The default .content-section h2 styles (centering, bottom margin) should still apply */
+     /* Add any overrides if necessary, e.g., adjusting margin-top if padding creates too much space */
+     margin-top: 0; /* Remove potential extra top margin from default h2 style */
+}
+
+/* Adjust the intro paragraph within this specific section */
+.cultural-legacy > .container > p {
+    /* The previous centering and max-width styles are good */
+    margin-bottom: 3rem; /* Ensure good space before the cards start */
+    color: var(--text-color); /* Ensure text color is appropriate on the new background */
+}
+
+/* Styles for .legacy-card and .floating-card remain the same */
+/* They will now appear visually "on top" of the --secondary-bg background */
+.legacy-card {
+    /* Reset background to ensure it's white on top of the section background */
+    background-color: var(--primary-bg);
+    /* It already inherits floating-card styles (shadow, hover) */
+    /* It already inherits grid-item styles */
+    text-align: center;
+}
+
+.legacy-card h3 {
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+
+/* --- Feature Card Section (Text Left, Image Right) --- */
+.feature-card-section {
+    /* Apply the distinct background styling */
+    background-color: var(--secondary-bg); /* Use the light lavender background */
+    padding: 3rem 2rem; /* Add padding INSIDE the section */
+    margin-top: 4rem; /* Keep or adjust vertical spacing */
+    margin-bottom: 4rem; /* Add space below */
+    border-radius: 15px; /* Rounded corners for the container */
+    border: 1px solid var(--border-color); /* Subtle border */
+    box-shadow: 0 6px 20px rgba(171, 71, 188, 0.1); /* Subtle purple-tinted shadow */
+
+    /* Remove potential conflict with content-section default padding if needed */
+    /* padding-top: 3rem; */ /* Handled by padding shorthand */
+    /* padding-bottom: 3rem; */ /* Handled by padding shorthand */
+}
+
+.feature-card {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    /* Ensure the card itself remains white */
+    background-color: var(--primary-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    /* Adjust shadow if needed to stand out against the new section background */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Slightly stronger shadow maybe */
+    overflow: hidden;
+    gap: 0;
+    /* Add margin auto to center the card within the padded section if needed */
+    /* max-width: 1100px; */ /* Optional: constrain card width */
+    /* margin-left: auto; */
+    /* margin-right: auto; */
+}
+
+/* Styles for .feature-text, .feature-image, and media queries remain the same */
+/* No changes needed there unless you want to tweak contrast/colors against the new BG */
+
+/* Example adjustment if text contrast becomes an issue (unlikely with white card): */
+/* .feature-text p {
+    color: var(--heading-color); /* Darker text if needed */
+/* } */
+
+.feature-text {
+    padding: 2.5rem 3rem; /* Generous padding */
+    /* If using Flexbox: flex: 3; */ /* Corresponds to 3fr */
+    display: flex; /* Use flex to align content vertically */
+    flex-direction: column;
+    justify-content: center; /* Center text vertically */
+}
+
+.feature-text h3 {
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+    font-size: 1.8rem; /* Slightly larger heading */
+}
+
+.feature-text p {
+    margin-bottom: 0; /* Remove default bottom margin if text is centered */
+    line-height: 1.7; /* Slightly more line spacing */
+    color: var(--text-color);
+}
+
+.feature-image {
+    /* If using Flexbox: flex: 2; */ /* Corresponds to 2fr */
+    position: relative; /* Needed if you want to overlay text/elements later */
+    height: 100%; /* Make container take full height */
+}
+
+.feature-image img {
+    display: block;
+    width: 100%;
+    height: 100%; /* Make image fill the container height */
+    object-fit: cover; /* Crop image to fit container nicely */
+    object-position: center; /* Center the image within its frame */
+    /* No border-radius needed here as parent has overflow:hidden */
+}
+
+/* --- Responsive Adjustments for Feature Card --- */
+@media (max-width: 992px) {
+    .feature-card {
+        grid-template-columns: 1fr 1fr; /* Equal columns on medium screens */
+    }
+    .feature-text { padding: 2rem; } /* Reduce padding */
+}
+
+@media (max-width: 768px) {
+    .feature-card {
+        grid-template-columns: 1fr; /* Stack text and image */
+    }
+    .feature-text {
+        padding: 2rem 1.5rem;
+        order: 2; /* Show text below image on mobile */
+    }
+    .feature-image {
+        order: 1; /* Show image above text on mobile */
+        min-height: 250px; /* Give image a minimum height when stacked */
+        height: auto; /* Allow height to adjust based on image aspect ratio */
+    }
+    .feature-image img {
+       height: auto; /* Reset height for natural aspect ratio */
+       max-height: 400px; /* Prevent image from being excessively tall */
+       object-fit: contain; /* Show whole image when stacked, if preferred */
+       /* Or keep object-fit: cover if cropping is okay */
+    }
+}
+
+/* --- Careers Section (Image Left, Text Right) --- */
+.careers-section {
+    /* Apply the distinct background styling */
+    background-color: var(--secondary-bg); /* Use the light lavender background */
+    padding: 3rem 2rem; /* Add padding INSIDE the section */
+    margin-top: 4rem; /* Keep or adjust vertical spacing */
+    margin-bottom: 4rem; /* Add space below */
+    border-radius: 15px; /* Rounded corners for the container */
+    border: 1px solid var(--border-color); /* Subtle border */
+    box-shadow: 0 6px 20px rgba(171, 71, 188, 0.1); /* Subtle purple-tinted shadow */
+}
+
+.careers-card {
+    display: grid; /* Using Grid */
+    grid-template-columns: 2fr 3fr; /* Image takes less space */
+    /* Grid column order is defined by HTML structure (image first) */
+    background-color: var(--primary-bg); /* White background for the card */
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Adjusted shadow */
+    overflow: hidden; /* Important for image rounding */
+    gap: 0; /* No gap needed */
+}
+
+.careers-image {
+    position: relative;
+    height: 100%;
+    /* Image is the first element in HTML, so it goes in the first grid column */
+}
+
+.careers-image img {
+    display: block;
+    width: 100%;
+    height: 100%; /* Make image fill the container height */
+    object-fit: cover; /* Crop image to fit container nicely */
+    object-position: center; /* Center the image */
+}
+
+.careers-text {
+    padding: 2.5rem 3rem; /* Generous padding */
+    display: flex; /* Use flex to align content vertically */
+    flex-direction: column;
+    justify-content: center; /* Center text vertically */
+    /* Text is the second element in HTML, so it goes in the second grid column */
+}
+
+.careers-text h3 {
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+}
+
+.careers-text p {
+    margin-bottom: 1.5rem; /* Space before button */
+    line-height: 1.7;
+    color: var(--text-color);
+}
+
+.careers-text .cta-button {
+    align-self: flex-start; /* Align button to the left */
+    /* Reuse existing .cta-button styles */
+}
+
+
+/* --- Responsive Adjustments for Careers Card --- */
+@media (max-width: 992px) {
+    .careers-card {
+        grid-template-columns: 1fr 1fr; /* Equal columns on medium screens */
+    }
+    .careers-text { padding: 2rem; } /* Reduce padding */
+}
+
+@media (max-width: 768px) {
+    .careers-card {
+        grid-template-columns: 1fr; /* Stack image and text */
+    }
+    .careers-image {
+        /* Image naturally comes first when stacked */
+        min-height: 250px; /* Give image minimum height when stacked */
+        height: auto; /* Allow height to adjust based on image aspect ratio */
+    }
+     .careers-image img {
+        height: auto; /* Reset height */
+        max-height: 400px; /* Prevent excessive height */
+        object-fit: contain; /* Show whole image when stacked, if preferred */
+        /* Or keep object-fit: cover */
+     }
+    .careers-text {
+        padding: 2rem 1.5rem;
+        text-align: center; /* Center text when stacked */
+    }
+    .careers-text .cta-button {
+        align-self: center; /* Center button when stacked */
+    }
+}
+
+/* --- Menu Page: Horizontal Image Gallery --- */
+.menu-gallery-section {
+    background-color: var(--secondary-bg); /* Distinct background */
+    padding: 2.5rem 0; /* Padding top and bottom */
+    margin-bottom: 4rem; /* Space below the gallery */
+    border-bottom: 1px solid var(--border-color); /* Subtle separator line */
+    position: relative; /* For potential future absolute elements */
+    overflow: hidden; /* Prevent accidental overflow issues */
+}
+
+/* Optional Title for the gallery */
+.gallery-title {
+    text-align: center;
+    color: var(--heading-color);
+    margin-bottom: 2rem; /* Space below title */
+    font-size: 2rem;
+    font-weight: 600;
+}
+/* Remove the default underline from content-section h2 if needed */
+.gallery-title::after {
+     display: none; /* Hide the accent underline for this title */
+}
+
+.menu-gallery-scroll-container {
+    display: flex; /* Align items horizontally */
+    overflow-x: auto; /* Enable horizontal scrolling */
+    overflow-y: hidden; /* Hide vertical scrollbar */
+    padding: 0 20px 1.5rem 20px; /* Left/Right padding within container, Bottom padding to space scrollbar */
+    scroll-behavior: smooth; /* Smooth scrolling for JS/anchor links (if added) */
+    -webkit-overflow-scrolling: touch; /* Smooth kinetic scrolling on iOS */
+    gap: 1.5rem; /* Space between gallery items */
+
+    /* Hide scrollbar across browsers */
+    /* For Webkit browsers (Chrome, Safari, Edge) */
+    &::-webkit-scrollbar {
+        height: 8px; /* Height of horizontal scrollbar */
+    }
+    &::-webkit-scrollbar-track {
+        background: transparent; /* Make track invisible */
+        border-radius: 4px;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: rgba(171, 71, 188, 0.5); /* Semi-transparent accent color */
+        border-radius: 4px;
+        border: 2px solid transparent; /* Creates padding around thumb */
+        background-clip: content-box; /* Important */
+    }
+     &::-webkit-scrollbar-thumb:hover {
+        background-color: rgba(171, 71, 188, 0.8); /* Darker on hover */
+    }
+
+    /* For Firefox */
+    scrollbar-width: thin; /* "auto" or "thin" */
+    scrollbar-color: rgba(171, 71, 188, 0.5) transparent; /* thumb color track color */
+}
+/* Add a pseudo-element fade effect on the sides (optional enhancement) */
+.menu-gallery-scroll-container::before,
+.menu-gallery-scroll-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 1.5rem; /* Match bottom padding */
+    width: 50px; /* Width of the fade */
+    pointer-events: none; /* Allow clicking through */
+    z-index: 2;
+}
+.menu-gallery-scroll-container::before {
+    left: 0;
+    background: linear-gradient(to right, var(--secondary-bg), transparent);
+}
+.menu-gallery-scroll-container::after {
+    right: 0;
+    background: linear-gradient(to left, var(--secondary-bg), transparent);
+}
+
+
+.gallery-item {
+    flex-shrink: 0; /* Prevent items from shrinking */
+    width: 280px; /* Width of each gallery item card */
+    border-radius: 10px; /* Rounded corners */
+    overflow: hidden; /* Clip the image to the border-radius */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative; /* For potential future overlays */
+    background-color: var(--primary-bg); /* Background for image loading */
+}
+
+.gallery-item:hover {
+    transform: translateY(-5px) scale(1.03); /* Slight lift and scale on hover */
+    box-shadow: 0 8px 20px rgba(171, 71, 188, 0.2); /* Purple glow shadow on hover */
+}
+
+.gallery-item img {
+    display: block;
+    width: 100%;
+    height: 200px; /* Fixed height for uniformity */
+    object-fit: cover; /* Cover the area, cropping if needed */
+    object-position: center; /* Center the image content */
+}
+
+/* Adjust the section containing the actual menu items */
+.menu-items-section {
+    /* Inherits .content-section, just ensures it's distinct if needed */
+}
+
+/* --- Locations Page: Interactive Map --- */
+.interactive-map-container {
+    background-color: var(--secondary-bg); /* Keep the background color */
+    border: 1px solid var(--chrome-color); /* Keep the chrome border */
+    padding: 1.5rem; /* Adjust padding as needed */
+    text-align: center; /* Center the image if it's narrower than container */
+    margin-top: 2rem; /* Space above the map container */
+    border-radius: 8px; /* Keep rounded corners */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Add a subtle shadow */
+}
+
+.interactive-map-container img {
+    max-width: 100%; /* Ensure image is responsive */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Remove extra space below image */
+    margin: 0 auto; /* Center the image horizontally */
+    border-radius: 4px; /* Slightly round the image corners */
+}
+
+/* --- Locations Page Specific Styles --- */
+
+.location-intro {
+    padding: 1rem 0 0 0; /* Reduced padding */
+    text-align: center;
+}
+.location-main-title {
+    /* Uses standard h2 styling, centering already applied */
+}
+.location-main-title::after { /* Ensure underline is centered */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.location-feature-block {
+    padding: 4rem 0; /* Vertical spacing for blocks */
+    overflow: hidden; /* Contain elements */
+}
+.location-feature-block.alt-bg {
+    background-color: var(--secondary-bg); /* Alternate background for visual rhythm */
+}
+
+.location-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    gap: 3rem; /* Space between text and image */
+    align-items: center; /* Vertically align content */
+}
+
+.location-text {
+    /* Styles for the text content container */
+}
+
+.location-text h3 {
+    color: var(--accent-color);
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+}
+
+.location-text p {
+    margin-bottom: 1rem;
+    line-height: 1.7;
+    color: var(--text-color);
+}
+.location-text p:last-child {
+    margin-bottom: 0;
+}
+
+.location-image img {
+    display: block;
+    width: 100%;
+    height: 350px; /* Fixed height for consistency */
+    object-fit: cover; /* Cover the area, crop nicely */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Specific layout for text-right blocks */
+.location-feature-block.text-right .location-grid {
+    /* Keep grid definition, just reorder items */
+}
+.location-feature-block.text-right .location-image {
+    grid-column: 1 / 2; /* Image in first column */
+    grid-row: 1 / 2;    /* Ensure it's on the first row */
+}
+.location-feature-block.text-right .location-text {
+    grid-column: 2 / 3; /* Text in second column */
+    grid-row: 1 / 2;    /* Ensure it's on the first row */
+}
+
+
+/* Sector List Styling */
+.sector-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 1rem;
+}
+.sector-list li {
+    padding: 0.4rem 0 0.4rem 1.5rem; /* Add left padding for pseudo-element */
+    margin-bottom: 0.5rem;
+    position: relative;
+    color: var(--text-color);
+    font-size: 1rem;
+}
+/* Futuristic bullet point */
+.sector-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    background-color: var(--accent-color);
+    border-radius: 50%;
+    box-shadow: 0 0 5px var(--accent-glow);
+}
+
+
+/* Map Section Adjustment */
+.map-section {
+    padding: 4rem 0;
+    background-color: var(--secondary-bg); /* Give map section distinct bg */
+}
+.map-section h3 { /* Style the title above the map */
+    text-align: center;
+    color: var(--heading-color);
+    margin-bottom: 1rem;
+}
+.map-section > .container > p { /* Style the paragraph above the map */
+    text-align: center;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2rem;
+}
+
+.interactive-map-container {
+    /* Existing styles are fine, maybe ensure margin-top is suitable */
+    margin-top: 0; /* Reset since we added spacing via paragraph */
+    padding: 1rem; /* Slightly reduce padding */
+    background-color: var(--primary-bg); /* Make map card white on the section bg */
+}
+
+
+/* --- Responsive Adjustments for Location Blocks --- */
+@media (max-width: 992px) {
+    .location-grid {
+        gap: 2rem; /* Reduce gap */
+    }
+    .location-image img {
+        height: 300px; /* Reduce image height */
+    }
+}
+
+@media (max-width: 768px) {
+    .location-feature-block {
+        padding: 2.5rem 0; /* Reduce padding */
+    }
+    .location-grid {
+        grid-template-columns: 1fr; /* Stack columns */
+        gap: 1.5rem;
+    }
+    .location-text {
+        text-align: center; /* Center text when stacked */
+    }
+    .location-image {
+        /* Reset order to ensure consistent stacking (image first) */
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+        margin-bottom: 1rem; /* Add space below image when stacked */
+    }
+    .location-text {
+        grid-column: 1 / 2;
+        grid-row: 2 / 3; /* Text below image */
+    }
+
+    .location-feature-block.text-right .location-image,
+    .location-feature-block.text-right .location-text {
+        /* Explicitly reset grid placement for stacked layout */
+        grid-column: 1 / 2;
+    }
+    .location-feature-block.text-right .location-image {
+         grid-row: 1 / 2;
+    }
+    .location-feature-block.text-right .location-text {
+         grid-row: 2 / 3;
+    }
+
+    .location-image img {
+        height: 250px; /* Further reduce height */
+    }
+    .sector-list {
+        display: inline-block; /* Prevent list taking full width */
+        text-align: left; /* Keep list text left aligned */
+    }
+    .map-section {
+        padding: 3rem 0;
+    }
+}
+
+/* --- Glitch Effect --- */
+@keyframes glitch-anim {
+    0% { transform: translate(0); opacity: 1; }
+    15% { transform: translate(4px, -3px) skewX(-5deg); opacity: 0.8; }
+    30% { transform: translate(-5px, 2px) skewX(4deg); filter: invert(1); opacity: 0.9; }
+    45% { transform: translate(3px, -1px) skewX(-3deg); filter: none; }
+    60% { transform: translate(-3px, 3px) skewX(2deg); opacity: 0.7; }
+    75% { transform: translate(2px, -4px) skewX(-1deg); filter: hue-rotate(90deg); }
+    90% { transform: translate(-1px, 1px) skewX(0); filter: none; opacity: 0.9; }
+    100% { transform: translate(0); opacity: 1; }
+  }
+  
+  body.glitching {
+    animation: glitch-anim 0.4s infinite linear alternate-reverse;
+    overflow: hidden; /* Prevent scrollbars during glitch */
+  }
+  
+  /* Optional: Glitch overlay */
+  body.glitching::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(255, 0, 0, 0.05); /* Faint red */
+    pointer-events: none;
+    z-index: 9999;
+    animation: glitch-anim 0.2s infinite linear alternate;
+  }
+  body.glitching::after {
+    content: '';
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 255, 0.05); /* Faint blue */
+    pointer-events: none;
+    z-index: 9999;
+    animation: glitch-anim 0.3s infinite linear reverse;
+    animation-delay: 0.05s;
+  }
+
+  /* --- Careers Page Specific Styles --- */
+
+/* Careers Hero */
+.careers-hero {
+    background: linear-gradient(rgba(30, 20, 40, 0.6), rgba(30, 20, 40, 0.7)), var(--secondary-bg); /* Purple-tinted gradient */
+    min-height: 40vh;
+    text-align: center;
+    padding: 4rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.careers-hero h1 {
+    color: var(--white);
+    font-size: 3rem;
+    text-shadow: 0 0 10px var(--accent-glow);
+}
+
+.careers-hero p {
+    color: var(--chrome-color);
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 1rem auto 0 auto;
+    font-weight: 300;
+}
+
+/* Reusing/Adapting Feature Block Styles */
+/* If location styles are generic enough, these might not be needed */
+/* Otherwise, duplicate/rename location styles */
+.careers-feature-block {
+    padding: 4rem 0;
+    overflow: hidden;
+}
+.careers-feature-block.alt-bg {
+    background-color: var(--secondary-bg);
+}
+
+.careers-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.careers-text {
+    /* Text styles */
+}
+.careers-text h3 {
+    color: var(--accent-color);
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+}
+.careers-text p {
+    margin-bottom: 1rem;
+    line-height: 1.7;
+    color: var(--text-color);
+}
+.careers-text p:last-child { margin-bottom: 0; }
+
+.careers-image img {
+    display: block;
+    width: 100%;
+    height: 350px; /* Consistent height */
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Layout specifics for text-right/left */
+.careers-feature-block.text-right .careers-image {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+}
+.careers-feature-block.text-right .careers-text {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+}
+/* text-left is default HTML order */
+
+
+/* Available Roles Section */
+.available-roles {
+    padding: 3rem 0 2rem 0; /* Adjust padding */
+    text-align: center;
+}
+
+.section-title { /* Centralized title style */
+    margin-bottom: 2.5rem;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--heading-color);
+    position: relative;
+    display: inline-block; /* Center the pseudo-element */
+}
+.section-title::after { /* Optional underline */
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: var(--accent-color);
+    border-radius: 2px;
+}
+
+.role-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 600px; /* Limit width */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem 2rem; /* Row and column gap */
+}
+
+.role-list li {
+    background-color: var(--secondary-bg); /* Light background chip */
+    color: var(--heading-color);
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px; /* Pill shape */
+    font-weight: 500;
+    font-size: 0.95rem;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.role-list li:hover {
+    background-color: var(--accent-color);
+    color: var(--white);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 10px var(--accent-glow);
+}
+
+
+/* Application Section */
+.apply-section {
+    padding: 4rem 0;
+    background-color: var(--secondary-bg); /* Consistent alt-bg */
+}
+.apply-section .text-center {
+    max-width: 700px;
+    margin: 0 auto;
+}
+.apply-section p {
+    margin-bottom: 2rem;
+    color: var(--text-color);
+}
+.apply-button {
+    /* Uses .cta-button styles */
+}
+
+
+/* --- Responsive Adjustments for Careers Page --- */
+@media (max-width: 992px) {
+    .careers-grid { gap: 2rem; }
+    .careers-image img { height: 300px; }
+    .careers-hero h1 { font-size: 2.5rem; }
+}
+
+@media (max-width: 768px) {
+    .careers-feature-block { padding: 2.5rem 0; }
+    .careers-grid {
+        grid-template-columns: 1fr; /* Stack columns */
+        gap: 1.5rem;
+    }
+    .careers-text { text-align: center; }
+    .careers-image { /* Stack image first */
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+        margin-bottom: 1rem;
+        height: 250px; /* Adjust height */
+    }
+    .careers-text { /* Text second */
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
+    }
+    /* Ensure override for text-right blocks */
+    .careers-feature-block.text-right .careers-image,
+    .careers-feature-block.text-right .careers-text {
+        grid-column: 1 / 2; /* Ensure single column */
+    }
+     .careers-feature-block.text-right .careers-image { grid-row: 1 / 2; }
+     .careers-feature-block.text-right .careers-text { grid-row: 2 / 3; }
+
+    .role-list { gap: 0.8rem 1.5rem; }
+    .apply-section { padding: 3rem 0; }
+}
+
+/* --- Three Seashells Page Specific Styles --- */
+
+/* Seashells Hero */
+.seashell-hero {
+    background: linear-gradient(rgba(20, 30, 40, 0.7), rgba(20, 30, 40, 0.8)), var(--secondary-bg); /* Darker neutral gradient */
+    min-height: 35vh; /* Shorter hero */
+    text-align: center;
+    padding: 3rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.seashell-hero h1 {
+    color: var(--white);
+    font-size: 2.8rem;
+    text-shadow: 0 0 8px rgba(200, 200, 200, 0.5); /* White/silver glow */
+}
+
+.seashell-hero p {
+    color: var(--chrome-color);
+    font-size: 1.1rem;
+    max-width: 650px;
+    margin: 1rem auto 0 auto;
+    font-weight: 300;
+}
+
+/* Main Guide Section */
+.seashell-guide-section {
+    padding: 4rem 0;
+    /* Optional: Add background */
+    background-color: var(--secondary-bg);
+}
+
+.seashell-card {
+    display: grid;
+    grid-template-columns: 2fr 3fr; /* Image left (less space), text right (more space) */
+    background-color: var(--primary-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    gap: 0; /* No gap */
+}
+
+.seashell-image {
+    position: relative;
+    height: 100%;
+    background-color: var(--secondary-bg); /* BG while image loads */
+    /* Image is first in HTML, goes in first column */
+}
+
+.seashell-image img {
+    display: block;
+    width: 100%;
+    height: 100%; /* Make image fill container height */
+    /* Use contain if the infographic must be fully visible */
+    object-fit: contain;
+    /* object-fit: cover; */ /* Use cover if cropping is okay */
+    object-position: center;
+    padding: 1rem; /* Add padding if using 'contain' */
+}
+
+.seashell-text {
+    padding: 2.5rem 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* Text is second in HTML, goes in second column */
+}
+
+.seashell-text h3 {
+    color: var(--accent-color);
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+}
+
+.seashell-text p {
+    margin-bottom: 1.2rem;
+    line-height: 1.7;
+    color: var(--text-color);
+    text-align: justify; /* Justified text for formal feel */
+}
+.seashell-text p:last-child {
+    margin-bottom: 0;
+}
+
+/* --- Responsive Adjustments for Seashells Card --- */
+@media (max-width: 992px) {
+    .seashell-card {
+        grid-template-columns: 1fr 1fr; /* Equal columns */
+    }
+    .seashell-text { padding: 2rem; }
+}
+
+@media (max-width: 768px) {
+    .seashell-card {
+        grid-template-columns: 1fr; /* Stack */
+    }
+    .seashell-image {
+        min-height: 300px; /* Min height for image when stacked */
+        height: auto;
+         /* Ensure image order is correct */
+         grid-column: 1 / 2;
+         grid-row: 1 / 2;
+    }
+     .seashell-image img {
+        height: auto;
+        max-height: 400px; /* Limit height */
+        object-fit: contain; /* Ensure full infographic visible */
+        padding: 1.5rem; /* More padding when stacked */
+     }
+    .seashell-text {
+        padding: 2rem 1.5rem;
+        /* Ensure text order is correct */
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
+    }
+}
+
+/* --- Nutritional Compliance Page Styles --- */
+
+.compliance-hero {
+    background: linear-gradient(rgba(200, 200, 210, 0.8), rgba(230, 230, 240, 0.8)), var(--secondary-bg); /* Very light, sterile gradient */
+    min-height: 35vh;
+    text-align: center;
+    padding: 3rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.compliance-hero h1 {
+    color: var(--heading-color); /* Dark heading on light background */
+    font-size: 2.8rem;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+}
+
+.compliance-hero p {
+    color: var(--text-color); /* Standard text color */
+    font-size: 1.1rem;
+    max-width: 650px;
+    margin: 1rem auto 0 auto;
+    font-weight: 300;
+}
+
+.compliance-content {
+    /* Uses default .content-section padding */
+}
+
+.compliance-content .text-content {
+    /* Uses default .text-content max-width and centering */
+}
+
+.compliance-content h2 {
+    /* Uses default .text-content h2 styling (left aligned) */
+}
+.compliance-content h3 {
+    color: var(--accent-color); /* Accent color for subheadings */
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-size: 1.6rem;
+}
+
+/* Prohibited List Styling */
+.compliance-content ul {
+    list-style: none; /* Remove default bullets */
+    padding-left: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+.compliance-content ul li {
+    margin-bottom: 0.6rem;
+    position: relative;
+    padding-left: 1.2rem; /* Space for pseudo-element */
+}
+/* Custom "prohibited" marker */
+.compliance-content ul li::before {
+    content: 'X'; /* Or use a unicode character like \2717 */
+    position: absolute;
+    left: 0;
+    top: 1px; /* Adjust alignment */
+    color: #d32f2f; /* Red color for emphasis */
+    font-weight: bold;
+    font-size: 1rem;
+    margin-right: 0.5rem;
+}
+
+/* Responsive Table Wrapper */
+.table-responsive-wrapper {
+    overflow-x: auto; /* Enable horizontal scroll on small screens */
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--border-color); /* Optional border around scroll area */
+    border-radius: 8px; /* Optional */
+}
+
+/* Compliance Table Styling */
+.compliance-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 650px; /* Force scrollbar sooner if needed */
+    font-size: 0.9rem; /* Slightly smaller font for table */
+}
+
+.compliance-table th,
+.compliance-table td {
+    padding: 0.8rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    vertical-align: middle;
+}
+
+.compliance-table th {
+    background-color: var(--secondary-bg); /* Light header background */
+    font-weight: 600;
+    color: var(--heading-color);
+    white-space: nowrap; /* Prevent header text wrapping */
+}
+
+.compliance-table tbody tr:nth-child(even) {
+    background-color: rgba(244, 244, 249, 0.5); /* Very subtle striping */
+}
+.compliance-table tbody tr:hover {
+    background-color: var(--secondary-bg); /* Highlight row on hover */
+}
+
+.compliance-table td:nth-child(1) { /* Style first column (Item Name) */
+    font-weight: 500;
+    color: var(--heading-color);
+}
+
+/* --- Responsive Adjustments for Compliance Page --- */
+@media (max-width: 768px) {
+    .compliance-hero { min-height: 30vh; }
+    .compliance-hero h1 { font-size: 2.4rem; }
+
+    .compliance-table { font-size: 0.85rem; }
+    .compliance-table th,
+    .compliance-table td { padding: 0.6rem 0.8rem; }
+}

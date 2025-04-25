@@ -1,0 +1,152 @@
+/* css/terminal.css */
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+:root {
+    --terminal-bg: #000000;
+    --terminal-text: #FFB000; /* Amber */
+    --terminal-cursor: #FFD000;
+    --scanline-opacity: 0.08;
+    --terminal-border-color: rgba(255, 176, 0, 0.6); /* Slightly muted amber for border */
+    --terminal-glow-color: rgba(255, 176, 0, 0.2); /* Subtle glow */
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    background-color: var(--terminal-bg);
+    color: var(--terminal-text);
+    font-family: 'VT323', 'Courier New', monospace;
+    font-size: 18px;
+    line-height: 1.4;
+    overflow: hidden; /* Prevent body scrolling - container will handle it */
+}
+
+body {
+    display: flex; /* Use flex to center container */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    padding: 20px; /* Padding around the entire terminal display */
+    position: relative;
+}
+
+/* Optional Scanlines Effect (Keep as is) */
+body::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(255, 176, 0, var(--scanline-opacity)) 0px,
+        rgba(255, 176, 0, var(--scanline-opacity)) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+    z-index: 1;
+    opacity: 0.6;
+}
+
+.terminal-container {
+    /* Remove flex-grow, set specific dimensions */
+    width: 100%;
+    height: 100%; /* Take full height of padded body */
+    max-width: 900px; /* Keep max width */
+    max-height: 700px; /* Optional: Max height for the screen effect */
+    overflow-y: auto; /* Still allow internal scrolling */
+    position: relative;
+    z-index: 2;
+    background-color: var(--terminal-bg); /* Ensure black background *inside* border */
+
+    /* Simulate Display Border */
+    padding: 1.5rem; /* Padding *inside* the border */
+    border: 3px solid var(--terminal-border-color); /* Amber border */
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5), /* Inner shadow for depth */
+                0 0 15px var(--terminal-glow-color); /* Outer glow */
+    border-radius: 4px; /* Slightly rounded corners */
+
+    /* --- Hide Scrollbar --- */
+    /* Standard */
+    scrollbar-width: none; /* Firefox */
+    /* Webkit */
+    &::-webkit-scrollbar {
+      display: none; /* Safari and Chrome */
+    }
+    /* IE/Edge (Legacy) */
+    -ms-overflow-style: none;
+}
+
+#terminal-output {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    display: inline;
+    /* Ensure text respects container padding */
+}
+
+#cursor {
+    display: inline-block;
+    background-color: var(--terminal-cursor);
+    animation: blink 1s step-end infinite;
+    margin-left: 2px;
+    vertical-align: bottom;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+.terminal-button {
+    /* Position button relative to the body/viewport, not terminal container */
+    position: absolute; /* Absolute positioning */
+    bottom: 30px; /* Position near bottom of viewport */
+    left: 50%;
+    transform: translateX(-50%); /* Center horizontally */
+    padding: 10px 20px;
+    background-color: transparent; /* Make transparent over scanlines initially */
+    color: var(--terminal-text);
+    border: 2px solid var(--terminal-text);
+    font-family: inherit;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    z-index: 3; /* Ensure button is above scanlines and terminal */
+    /* Display handled by JS */
+}
+
+.terminal-button:hover {
+    background-color: var(--terminal-text);
+    color: var(--terminal-bg);
+}
+
+/* Simple responsiveness */
+@media (max-width: 600px) {
+    body {
+        font-size: 16px;
+        padding: 10px; /* Less padding around terminal */
+     }
+    .terminal-container {
+        padding: 1rem; /* Less padding inside terminal */
+        max-height: none; /* Allow full height on small screens */
+    }
+     .terminal-button {
+        bottom: 20px;
+     }
+}
+@media (max-height: 500px) { /* Adjust button position on short screens */
+    .terminal-button {
+        position: relative; /* Switch back to relative to flow below content */
+        bottom: auto;
+        left: auto;
+        transform: none;
+        margin: 1.5rem auto 0 auto; /* Add margin when relative */
+    }
+}
