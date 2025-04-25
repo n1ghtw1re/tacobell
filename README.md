@@ -14,8 +14,6 @@ This repository contains the official static web presence simulation for the sol
 
 This project serves as a demonstration of building a fast, efficient, secure, and maintainable static business website using **only core web technologies**: HTML5, CSS3 (with CSS Variables), and Vanilla JavaScript (ES6+). No extraneous frameworks or libraries were utilized, ensuring optimal performance and minimal resource consumption, as mandated by efficiency standards.
 
-**[Screenshot Placeholder: Insert a compelling screenshot of the homepage here]**
-
 ---
 
 ## Key Features & Information Sectors
